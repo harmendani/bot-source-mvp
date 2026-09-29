@@ -17,8 +17,7 @@ jobs:
 
     env:
       ACR_NAME: ${{ secrets.ACR_NAME }}
-      ACR_LOGIN_SERVER: ${{secrets.ACR_LOGIN_SERVER}}
-      IMAGE_NAME: ${{secrets.ACR_LOGIN_SERVER}}/${{ github.event.repository.name }}/$GITHUB_SHA
+      IMAGE_NAME: ${{secrets.ACR_LOGIN_SERVER}}/${{ github.event.repository.name }}:${{ github.sha }}
 
     steps:
       - name: Checkout repository
