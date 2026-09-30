@@ -30,7 +30,7 @@ WORKDIR /app
 
 COPY --from=prod-deps /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/package.json /app/.env ./
+COPY --from=builder /app/package.json ./
 
 RUN apk add --no-cache libc6-compat dumb-init && \
   rm -rf /usr/local/lib/node_modules/npm && \
