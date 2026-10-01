@@ -1,19 +1,18 @@
 import Fastify from 'fastify'
+import { env } from './config/index.js'
 
 const fastify = Fastify({
-  logger: true
+  logger: { level: env.logLevel }
 })
 
-// Declare a route
 fastify.get('/', function (request, reply) {
   reply.send({ hello: 'bot ok!' })
 })
 
-// Run the server!
-fastify.listen({ port: 3001, host: '0.0.0.0' }, function (err, address) {
-  if (err) {
-    fastify.log.error(err)
-    process.exit(1)
-  }
-  // Server is now listening on ${address}
-})
+fastify.listen({ port: env.port, host: '0.0.0.0' },
+  function (err, address) {
+    if (err) {
+      fastify.log.error(err)
+      process.exit(1)
+    }
+  })
