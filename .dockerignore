@@ -2,7 +2,8 @@ node_modules
 dist
 .pnp.*
 .yarn/*
-.env.example
+.env
+.env.*
 
 .git
 .gitignore
