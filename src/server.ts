@@ -10,7 +10,7 @@ fastify.get('/', function (request, reply) {
 })
 
 fastify.listen({ port: env.port, host: '0.0.0.0' },
-  function (err, address) {
+  function (err) {
     if (err) {
       fastify.log.error(err)
       process.exit(1)

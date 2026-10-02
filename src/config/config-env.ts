@@ -17,8 +17,8 @@ interface Env {
 }
 
 function loadEnv(): Env {
-  const nodeEnv = oneOf('NODE_ENV', NODE_ENVS)
-  const logLevel = oneOf('LOG_LEVEL', LOG_LEVELS)
+  const nodeEnv = oneOf(process.env.NODE_ENV, NODE_ENVS)
+  const logLevel = oneOf(process.env.LOG_LEVEL, LOG_LEVELS)
   const port = Number(process.env.PORT)
 
   if (!process.env.PORT?.trim() || !Number.isInteger(port)) {

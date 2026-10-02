@@ -1,9 +1,8 @@
-function oneOf<T>(key: string, allowed: readonly T[]): T {
-  const value = process.env[key]
-  const match = allowed.find((item) => item === value)
+function oneOf<T>(key: any, allowed: readonly T[]): T {
+  const match = allowed.find((item) => item === key)
 
   if (match === undefined) {
-    throw new Error(`${key} invalid: "${value}" (use: ${allowed.join(', ')})`)
+    throw new Error(`${key} invalid: "${key}" (use: ${allowed})`)
   }
   return match
 }

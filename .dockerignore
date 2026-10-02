@@ -1,0 +1,15 @@
+node_modules
+dist
+.pnp.*
+.yarn/*
+.env.example
+
+.git
+.gitignore
+.gitattributes
+.github
+
+.vscode
+.editorconfig
+*.md
+
