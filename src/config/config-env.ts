@@ -21,7 +21,7 @@ function loadEnv(): Env {
   const nodeEnv = oneOf(process.env.NODE_ENV, NODE_ENVS)
   const logLevel = oneOf(process.env.LOG_LEVEL, LOG_LEVELS)
   const port = Number(process.env.PORT)
-  const verifyToken = process.env.INSTAGRAM_VERIFY_TOKEN
+  const verifyToken = process.env.IG_VERIFY_TOKEN
 
   if (!process.env.PORT?.trim() || !Number.isInteger(port)) {
     throw new Error(`Invalid or empty PORT value: "${process.env.PORT}"`)

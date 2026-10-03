@@ -1,5 +1,5 @@
 import type { FastifyPluginAsync } from 'fastify'
-import { env } from '../config/index.js'
+import { env } from '../config/index'
 
 interface VerifyQuery {
   'hub.mode': string
