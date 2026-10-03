@@ -1,4 +1,4 @@
-import oneOf from './oneOf'
+import oneOf from './one-of'
 
 export {
   oneOf
