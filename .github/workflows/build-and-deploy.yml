@@ -11,7 +11,30 @@ permissions:
   contents: read
 
 jobs:
+
+  build-and-test:
+    if: github.event_name == 'push' 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v6
+      - name: Run buildx
+        run: echo "Only building..."        
+      - name: Build Docker image
+        uses: docker/build-push-action@v6
+        with:
+          push: false
+          tags: $IMAGE_NAME
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Show built image
+        run: |
+          echo "Image built:"
+          echo "$IMAGE_NAME"
+          
   build-and-push:
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     environment: hml
 
@@ -34,14 +57,13 @@ jobs:
         run: |
           az acr login --name "$ACR_NAME"
 
-      - name: Build Docker image
-        run: |
-          docker build \
-            --tag "$IMAGE_NAME" \
-            .
-
-      - name: Push Docker image
-        run: docker push "$IMAGE_NAME"
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: $IMAGE_NAME
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Show published image
         run: |
