@@ -16,7 +16,7 @@ jobs:
     if: github.event_name == 'push' 
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: ${{secrets.ACR_LOGIN_SERVER}}/${{ github.event.repository.name }}:${{ github.sha }}
+      IMAGE_NAME: ${{ github.event.repository.name }}:${{ github.sha }}
     steps:
       - name: Code Checkout
         uses: actions/checkout@v6
