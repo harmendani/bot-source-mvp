@@ -1,3 +1,2 @@
-import webHooksSchemas from './webhooks-schema';
+export { webHooksSchemas } from './webhooks-schema';
 
-export { webHooksSchemas };

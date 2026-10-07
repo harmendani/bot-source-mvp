@@ -1,13 +1,12 @@
-import type { FastifyPluginAsync } from 'fastify'
-import { webhookRoutes } from './webhook.routes.js'
+import { webhookRoutes } from './webhook.routes.js';
 
-export const routes: FastifyPluginAsync = async (app) => {
-  app.addHook('onRequest', async (request) => {
-    request.log.info(
-      { ip: request.ip, method: request.method, url: request.url },
-      'Request received'
-    )
+const routes = [...webhookRoutes]
+
+export default function registerRoutes(app: any) {
+  routes.forEach(route => {
+    app.route(route)
   })
-
-  await app.register(webhookRoutes)
 }
+
+
+

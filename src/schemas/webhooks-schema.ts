@@ -1,4 +1,4 @@
-const webHooksSchemas = {
+export const webHooksSchemas = {
   verifyRouteSchema: {
     querystring: {
       type: 'object',
@@ -20,5 +20,4 @@ const webHooksSchemas = {
   }
 }
 
-export default webHooksSchemas;
 
