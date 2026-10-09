@@ -8,7 +8,7 @@ export function createHealthCheckPlugin({ path }: HealthCheckOptions): FastifyPl
   return async (app) => {
     app.get(
       path,
-      { schema: { response: { 200: { type: 'string' } } } },
+      { logLevel: 'warn', schema: { response: { 200: { type: 'string' } } } },
       async (_request, reply) => reply.type('text/plain').send('OK')
     )
   }

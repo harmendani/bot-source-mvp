@@ -12,7 +12,7 @@ export const webhookRoutes = [
       const challenge = request.query['hub.challenge']
 
       if (mode === 'subscribe' && token === env.verifyToken) {
-        request.log.info('WEBHOOK_VERIFIED')
+        request.log.debug('WEBHOOK_VERIFIED')
         return reply.type('text/plain').send(challenge)
       }
 
@@ -25,7 +25,7 @@ export const webhookRoutes = [
     url: '/webhook',
     schema: webHooksSchemas.notifyRouteSchema,
     handler: (request: any, reply: any) => {
-      request.log.debug({ body: request.body }, 'Received webhook')
+      request.log.debug('EVENT_RECEIVED')
       return reply.type('text/plain').send('EVENT_RECEIVED')
     }
   }

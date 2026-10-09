@@ -1,12 +1,17 @@
 import Fastify from 'fastify'
 import { env } from './config'
+import { AppLogController, loggerOptions } from './config/logger'
 import registerPlugins from './plugins'
 import routes from './routes'
 import { shutDown } from './shutdown'
+import { generateUniqueId } from './utils/gen-unique-id'
 
 const fastify = Fastify({
-  logger: { level: env.logLevel },
-  bodyLimit: 1024
+  logger: loggerOptions,
+  logController: new AppLogController(),
+  genReqId: () => generateUniqueId(),
+  bodyLimit: 1024,
+  trustProxy: true,
 })
 
 registerPlugins(fastify)
